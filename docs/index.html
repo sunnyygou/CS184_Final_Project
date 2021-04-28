@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://html5-templates.com/" />
+    <title>Bootstrap Template With Sticky Menu</title>
+    <meta name="description" content="Simplified Bootstrap template with sticky menu">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sticky-menu.css" rel="stylesheet">
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">CS184 Final Project</a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">Milestone Video & Slides</a>
+                    </li>
+
+
+                </ul>
+            </div>	<!-- .navbar-collapse -->
+        </div>		<!-- .container -->
+    </nav>
+    <!-- Welcome   -->
+    <section id="Smoke Simulator" class="welcome-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>CS 184 Final Project Milestone</h1>
+                    <p>We are going to use Berkeley Gfx with Vulkan for this project. Specifically, we will be using the ShaderGraph of Berkeley Gfx to implement our smoke simulation. Our simulation will be described as a state machine so that we will use the previous output state as the input for the next state to simulate dynamic smokes.</p>
+					          <p>We will calculate our stage transition based on a slightly varied form of Navier–Stokes Equation:</p>
+          					<p><img src="http://latex.codecogs.com/gif.latex? \frac{\partial\boldsymbol{u}}{\partial t} = -(\boldsymbol{u} \cdot \nabla)\boldsymbol{u} - \frac{1}{\rho}\nabla p+\nu \nabla^2\boldsymbol{u}+\boldsymbol{F}" border="0"/></p>
+                    <p><img src="http://latex.codecogs.com/gif.latex? \nabla \cdot \boldsymbol{u} = 0" border="0"/></p>
+                    <p>This will be very similar to using Navier–Stokes Equation to simulate fluids. One variation we will make is that we are going to add an additional force, buoyancy, so that the smoke will rise up. We think the example 3 from the BerkeleyGFX library provided by staff is relevant to our final project, so we decided to first render the example 3 and build our project on top of that framework. Example 3 displays the famous Game of Life. Instead of each flickering life, we want to have a stable pixel. So first, we want to render something like a drawing pad brush. It will draw as the mouse moves. The drawn stroke will not move or fade. Then we will add a diffusion effect to the brush stroke. After that, we will add in dissipation effects so that the particles disappear as the time proceeds. Finally, we will add in other different variables that will affect the smoke. Here are three variables we plan to add: </p>
+                    <p>&nbsp;</p>
+
+                    <h4> Buoyancy </h4>
+                    <p>Buoyancy is an upward force that opposes the weight of the object, in this case, the particle of the smoke. Since it is an upward force, the buoyancy value will apply force onto the y axis. Buoyancy reflects the density of the smoke particles. The more dense the smoke is, the less buoyant force there is. Therefore, increasing the buoyant force will cause smoke to rise, meaning that the smoke has a smaller density, and vice versa. Buoyancy is also related to temperature. Higher temperature causes the density to decrease (that’s also why hot air balloons can rise) and therefore results in a higher buoyancy value.</p>
+                    <p>&nbsp;</p>
+
+                    <h4> Temperature  </h4>
+                    <p> In basic principles, temperature affects the motion of a fluid by causing warmer particles to rise and cooler particles to fall. This is related to our principles and equations for implementing buoyancy. By treating temperature as a scalar quality that is advected along the fluid’s velocity, we can model the change in temperature over time by calculating the current temperature multiplied by the dot product of the velocity and the divergence. </p>
+                    <p>&nbsp;</p>
+
+                    <h4>Vorticity </h4>
+                      <p>Vorticity is a pseudovector field that describes rotation in a fluid. As a variable in our smoke simulation we will be able to restore some rotational forces dampened due to the simulation. We can model vorticity in the smoke simulation as a constant term that will be consistent throughout the simulation. The constant term can be increased or decreased to add more or less rolling effects of the smoke in the simulation. To calculate the vorticity, we first look at what represents it in the Navier-Stokes equation, F. </p>
+                      <p> To get the vorticity component of F, we compute the the vorticity field by taking the curl of the velocity field to obtain the vorticity ω = ∇ × u, computing normalized vorticity location vectors N = ∇|ω|/|∇|ω||, and then applying a force F = eh(N ×ω) scaled by the size of the grid, h and a strength parameter, e.  </p>
+                      <p>&nbsp;</p>
+
+                      <h5> So far, we are able to render something like the drawing pad brush, we will continue to make progress as planned above. Click the button below to check our video and slides. The video shows the graphics and the slides summarized the project and our current progress.</h5>
+                      <p>&nbsp;</p>
+                      <p>&nbsp;</p>
+                      <a class="btn btn-primary page-scroll" href="#about">Video & Slides</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- What we do Section -->
+    <section id="whatwedo" class="whatwedo-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1></h1>
+                    <p> </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Milestone Video & Slides</h1>
+                    <h3>Video</h3>
+                    <iframe src="https://drive.google.com/file/d/1pM2LSUW1juikdAPNgVM2UrJraNcBkMCN/preview" width="640" height="480"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Milestone Slides</h3>
+                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRl8CVFR4scSCTU1mkP_O5ViPGlTJzO06CVXaYm9m091EI1GHZq1PF56TDAiwoHmcMPbPfrT6hK1pHC/embed?start=true&loop=true&delayms=3000" frameborder="0" width="800" height="474" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+	<a id="back2Top" title="Back to top" href="#">&#10148;</a>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/sticky-menu.js"></script>
+
+</body>
+
+</html>
