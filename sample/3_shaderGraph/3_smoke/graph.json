@@ -1,17 +1,10 @@
 {
   "stages": {
-    "final": {
+    "color": {
       "shader": "final_tonemap.glsl",
       "output": [ "framebuffer" ],
       "textures": [ "output0" ],
       "parameters": [
-        {
-          "name": "gamma",
-          "type": "float",
-          "min": 1.0,
-          "max": 3.0,
-          "default": 2.2
-        },
         {
           "name": "colorFilter",
           "type": "vec3",
@@ -21,10 +14,26 @@
         }
       ]
     },
-    "stage0": {
+    "size": {
       "shader": "game_of_life.glsl",
       "output": [ "output0" ],
-      "textures": [ "previous_output0" ]
+      "textures": [ "previous_output0" ],
+      "parameters": [
+        {
+          "name": "sourceSize",
+          "type": "float",
+          "min": 10.0,
+          "max": 30.0,
+          "default": 15.0
+        },
+        {
+          "name": "buoyancy",
+          "type": "float",
+          "min": -2.5,
+          "max": 2.5,
+          "default": 0.0
+        }
+      ]
     }
   }
 }
