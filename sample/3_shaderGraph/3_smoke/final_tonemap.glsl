@@ -8,6 +8,8 @@ layout(binding = 7) uniform sampler2D output0;
 
 layout(push_constant) uniform Parameters {
   float sourceSize;
+    float buoyancy;
+    float temperature;
   vec3 colorFilter;
 
 };

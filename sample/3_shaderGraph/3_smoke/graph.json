@@ -32,6 +32,13 @@
           "min": -2.5,
           "max": 2.5,
           "default": 0.0
+        },
+        {
+          "name": "temperature",
+          "type": "float",
+          "min": 1,
+          "max": 500,
+          "default": 300.0
         }
       ]
     }
