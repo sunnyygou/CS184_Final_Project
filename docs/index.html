@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="mobile-web-app-capable" content="yes">
     <title>
-        Pixelwise Smoke Simulation: CS 184 Final Project - HackMD
+        CS 184 Final Project: Pixelwise Smoke Simulation - HackMD
     </title>
     <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
     <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
@@ -34,10 +34,39 @@
 </head>
 
 <body>
-    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="Pixelwise-Smoke-Simulation-CS-184-Final-Project" data-id="Pixelwise-Smoke-Simulation-CS-184-Final-Project"><a class="anchor hidden-xs" href="#Pixelwise-Smoke-Simulation-CS-184-Final-Project" title="Pixelwise-Smoke-Simulation-CS-184-Final-Project"><span class="octicon octicon-link"></span></a><span>Pixelwise Smoke Simulation: CS 184 Final Project</span></h1><p><span>Team 15: Sunny Gou, Owen Konsmo, Renhua Liu, Ashish Shrestha</span></p><h2 id="Abstract" data-id="Abstract"><a class="anchor hidden-xs" href="#Abstract" title="Abstract"><span class="octicon octicon-link"></span></a><span>Abstract</span></h2><p><span>In this project we want to simulate smoke in the air in two dimensions. We used ShaderGraph of Berkeley Gfx with Vulkan to implement our simulation. Specifically, we used Conway’s Game of Life example in the Berkeley Gfx library as the starting point of our project. Our simulation would be described as a state machine so that we used the previous output state as the input for the next state to simulate dynamic smokes, and our simulation is based on pixels rather than based on particles. We also added in different variables that would affect the movement of the smoke.</span></p><h2 id="Technical-approach" data-id="Technical-approach"><a class="anchor hidden-xs" href="#Technical-approach" title="Technical-approach"><span class="octicon octicon-link"></span></a><span>Technical approach</span></h2><p><span>A 1-2 page summary of your technical approach, techniques used, algorithms implemented, etc. (use references to papers or other resources for further detail). Highlight how your approach varied from the references used (did you implement a subset, or did you change or enhance anything), the unique decisions you made and why.</span></p><h3 id="Problems-encountered" data-id="Problems-encountered"><a class="anchor hidden-xs" href="#Problems-encountered" title="Problems-encountered"><span class="octicon octicon-link"></span></a><span>Problems encountered</span></h3><p><span>A description of problems encountered and how you tackled them.</span></p><h3 id="Lessons-Learned" data-id="Lessons-Learned"><a class="anchor hidden-xs" href="#Lessons-Learned" title="Lessons-Learned"><span class="octicon octicon-link"></span></a><span>Lessons Learned</span></h3><p><span>A description of lessons learned.</span></p><h2 id="Results" data-id="Results"><a class="anchor hidden-xs" href="#Results" title="Results"><span class="octicon octicon-link"></span></a><span>Results</span></h2><ul>
-<li><span>pictures</span></li>
-<li><span>videos</span></li>
-</ul><h2 id="References" data-id="References"><a class="anchor hidden-xs" href="#References" title="References"><span class="octicon octicon-link"></span></a><span>References</span></h2><p><span>Belows are the resources we have referenced for our final project. We have added in hyperlinks for your convenience.</span></p><p><a href="https://gamedevelopment.tutsplus.com/tutorials/how-to-write-a-smoke-shader--cms-25587" target="_blank" rel="noopener"><span>How to Write a Smoke Shader </span></a><span>- Omar Shehata</span></p><p><a href="https://doi.org/10.1006/gmip.1995.1012" target="_blank" rel="noopener"><span>Toward Interactive-Rate Simulation of Fluids with Moving Obstacles Using Navier-Stokes Equations</span></a><span> - Jim X. Chen</span></p><p><a href="https://www.pixijs.com/" target="_blank" rel="noopener"><span>PixiJS</span></a><span> - fast lightweight 2D library that will be used to visualize the simulations</span></p><h2 id="Contributions-from-each-team-member" data-id="Contributions-from-each-team-member"><a class="anchor hidden-xs" href="#Contributions-from-each-team-member" title="Contributions-from-each-team-member"><span class="octicon octicon-link"></span></a><span>Contributions from each team member</span></h2><p><span>Sunny Gou:</span><br>
+    <div id="doc" class="markdown-body container-fluid comment-enabled comment-inner" data-hard-breaks="true"><h1 id="CS-184-Final-Project-Pixelwise-Smoke-Simulation" data-id="CS-184-Final-Project-Pixelwise-Smoke-Simulation"><a class="anchor hidden-xs" href="#CS-184-Final-Project-Pixelwise-Smoke-Simulation" title="CS-184-Final-Project-Pixelwise-Smoke-Simulation"><span class="octicon octicon-link"></span></a><span>CS 184 Final Project: Pixelwise Smoke Simulation</span></h1><p><span>Team 15: Sunny Gou, Owen Konsmo, Renhua Liu, Ashish Shrestha</span></p><h2 id="Abstract" data-id="Abstract"><a class="anchor hidden-xs" href="#Abstract" title="Abstract"><span class="octicon octicon-link"></span></a><span>Abstract</span></h2><p><span>In this project we want to simulate smoke in the air in two dimensions. We used ShaderGraph of Berkeley Gfx with Vulkan to implement our simulation. Specifically, we used Conway’s Game of Life example in the Berkeley Gfx library as the starting point of our project. Our simulation would be described as a state machine so that we used the previous output state as the input for the next state to simulate dynamic smokes, and our simulation is based on pixels rather than based on particles.</span></p><h2 id="Technical-approach" data-id="Technical-approach"><a class="anchor hidden-xs" href="#Technical-approach" title="Technical-approach"><span class="octicon octicon-link"></span></a><span>Technical approach</span></h2><p><span>We first rendered something like a drawing pad brush. It will draw as the mouse moves. The drawn stroke will not move or fade. We also added in the variable slider for the smoke source size, so that we can change the size of the stroke. Then we added a diffusion effect to the brush stroke, so that strokes disappear as the time passes, giving our visualization the gradient ‘smoky’ effect. We were able to do so by sampling colors of the neighboring pixels for each of the pixels. We updated the color of the pixel by “gaining” some colors from the neighboring pixels. We got the idea from </span><a href="https://gamedevelopment.tutsplus.com/tutorials/how-to-write-a-smoke-shader--cms-25587" target="_blank" rel="noopener"><span>this article</span></a><span> by Omar Shehata. On top of the reference, we advanced our implementation by adding in other different variables that would affect smoke. For example, buoyancy, vorticity, and temperature. Throughout this last part of the project, especially during our implementation of vorticity and temperature, we have encountered several obstacles and we will discuss more below.</span></p><ul class="contains-task-list">
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" type="checkbox" disabled="disabled"><span> Buoyancy</span><br>
+<span>Buoyancy is an upward force that opposes the weight of the object, in this case, the particle of the smoke. Since it is an upward force, the buoyancy value will apply force onto the y axis. Increasing the buoyant force will decrease the density of the smoke and therefore cause smoke to rise up; and vice versa. After we implemented the buoyancy variable, we added in a buoyancy slider so that we can change the buoyancy value during visualization. The default buoyancy force is zero, meaning that the smoke does not rise or sink while diffusing away. When the buoyant force is positive, the smoke rises up and when the buoyant force is negative, the smoke would sink down.</span></li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" type="checkbox" disabled="disabled"><span> Vorticity</span><br>
+<span>For the vorticity shader, we initially heavily struggled with finding a technical approach that would suit our smoke simulation. First, we thought of how we could implement vorticity using its definition from the Navier-Stokes equation as listed in the papers we researched (</span><a href="https://web.stanford.edu/class/cs237d/smoke.pdf" target="_blank" rel="noopener"><span>Visual Simulation of Smoke - Stanford</span></a><span>). However, we soon realized that this approach would not work since we weren’t simulating based on particles, but instead relying on pixels. Therefore, we tried several different approaches such as randomization, guessing and checking, and creating simple rotations with the smoke. Eventually, we realized that the best vorticity that we could produce with our technical approach was through simple sine waves the smoke would take based on the vorticity constant which made the smoke simulation a little more realistic.</span></li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" type="checkbox" disabled="disabled"><span> Temperature</span><br>
+<span>Temperature was another variable that we had several false starts in the process of implementing. We ran into several dead ends, including attempts to implement it based on the Navier-Stokes equation and uncertainty over the visual effect we wanted the temperature to have. Ultimately we settled on having the smoke condense more heavily at low temperatures and fade more quickly at high temperatures, due to the basic principle of faster particle motion.</span></li>
+</ul>
+
+  <h2 id="Results" data-id="Results"><a class="anchor hidden-xs" href="#Results" title="Results"><span class="octicon octicon-link"></span></a><span>Results</span></h2>
+    <p><span>Here are some rendered images of different variables we implemented.</span><br></p>
+
+    <ul>
+      <li><span>videos</span></li>
+      <br> <br> <br>
+
+      <li><span>Positive Buoyancy</span></li>
+      <img src="images/pos_buo.gif" alt="pos_buo">
+      <br> <br> <br>
+      <li><span>Negative Buoyancy</span></li>
+      <img src="images/neg_buo.gif" alt="neg_buo">
+      <br> <br> <br>
+      <li><span>Vorticity</span></li>
+      <img src="images/vorticity.gif" alt="Vorticity">
+      <br> <br> <br>
+      <li><span>Temperature</span></li>
+      <img src="images/temperature.gif" alt="Temperature">
+    </ul>
+
+
+
+
+<h2 id="References" data-id="References"><a class="anchor hidden-xs" href="#References" title="References"><span class="octicon octicon-link"></span></a><span>References</span></h2><p><span>Belows are the resources we have referenced for our final project. We have added in hyperlinks for your convenience.</span></p><p><a href="https://web.stanford.edu/class/cs237d/smoke.pdf" target="_blank" rel="noopener"><span>Visual Simulation of Smoke</span></a><span>- Ronald Fedkiw et al</span></p><p><a href="https://gamedevelopment.tutsplus.com/tutorials/how-to-write-a-smoke-shader--cms-25587" target="_blank" rel="noopener"><span>How to Write a Smoke Shader </span></a><span>- Omar Shehata</span></p><p><a href="https://doi.org/10.1006/gmip.1995.1012" target="_blank" rel="noopener"><span>Toward Interactive-Rate Simulation of Fluids with Moving Obstacles Using Navier-Stokes Equations</span></a><span> - Jim X. Chen</span></p><p><a href="https://www.pixijs.com/" target="_blank" rel="noopener"><span>PixiJS</span></a><span> - fast lightweight 2D library that will be used to visualize the simulations</span></p><h2 id="Contributions-from-each-team-member" data-id="Contributions-from-each-team-member"><a class="anchor hidden-xs" href="#Contributions-from-each-team-member" title="Contributions-from-each-team-member"><span class="octicon octicon-link"></span></a><span>Contributions from each team member</span></h2><p><span>Sunny Gou:</span><br>
 <span>Owen Konsmo:</span><br>
 <span>Renhua Liu:</span><br>
 <span>Ashish Shrestha:</span></p></div>
@@ -48,13 +77,9 @@
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
-<li class=""><a href="#Pixelwise-Smoke-Simulation-CS-184-Final-Project" title="Pixelwise Smoke Simulation: CS 184 Final Project">Pixelwise Smoke Simulation: CS 184 Final Project</a><ul class="nav">
+<li class=""><a href="#CS-184-Final-Project-Pixelwise-Smoke-Simulation" title="CS 184 Final Project: Pixelwise Smoke Simulation">CS 184 Final Project: Pixelwise Smoke Simulation</a><ul class="nav">
 <li><a href="#Abstract" title="Abstract">Abstract</a></li>
-<li class=""><a href="#Technical-approach" title="Technical approach">Technical approach</a><ul class="nav">
-<li><a href="#Problems-encountered" title="Problems encountered">Problems encountered</a></li>
-<li class=""><a href="#Lessons-Learned" title="Lessons Learned">Lessons Learned</a></li>
-</ul>
-</li>
+<li class=""><a href="#Technical-approach" title="Technical approach">Technical approach</a></li>
 <li><a href="#Results" title="Results">Results</a></li>
 <li><a href="#References" title="References">References</a></li>
 <li><a href="#Contributions-from-each-team-member" title="Contributions from each team member">Contributions from each team member</a></li>
@@ -67,13 +92,9 @@
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
         <div class="toc"><ul class="nav">
-<li class=""><a href="#Pixelwise-Smoke-Simulation-CS-184-Final-Project" title="Pixelwise Smoke Simulation: CS 184 Final Project">Pixelwise Smoke Simulation: CS 184 Final Project</a><ul class="nav">
+<li class=""><a href="#CS-184-Final-Project-Pixelwise-Smoke-Simulation" title="CS 184 Final Project: Pixelwise Smoke Simulation">CS 184 Final Project: Pixelwise Smoke Simulation</a><ul class="nav">
 <li><a href="#Abstract" title="Abstract">Abstract</a></li>
-<li class=""><a href="#Technical-approach" title="Technical approach">Technical approach</a><ul class="nav">
-<li><a href="#Problems-encountered" title="Problems encountered">Problems encountered</a></li>
-<li class=""><a href="#Lessons-Learned" title="Lessons Learned">Lessons Learned</a></li>
-</ul>
-</li>
+<li class=""><a href="#Technical-approach" title="Technical approach">Technical approach</a></li>
 <li><a href="#Results" title="Results">Results</a></li>
 <li><a href="#References" title="References">References</a></li>
 <li><a href="#Contributions-from-each-team-member" title="Contributions from each team member">Contributions from each team member</a></li>
