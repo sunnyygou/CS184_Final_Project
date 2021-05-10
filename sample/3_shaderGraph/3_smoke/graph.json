@@ -22,15 +22,15 @@
         {
           "name": "sourceSize",
           "type": "float",
-          "min": 10.0,
-          "max": 30.0,
-          "default": 15.0
+          "min": 20.0,
+          "max": 50.0,
+          "default": 30.0
         },
         {
           "name": "buoyancy",
           "type": "float",
-          "min": -2.5,
-          "max": 2.5,
+          "min": -2,
+          "max": 2,
           "default": 0.0
         },
         {
