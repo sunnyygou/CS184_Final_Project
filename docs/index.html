@@ -45,14 +45,10 @@
 <h3 id="Vorticity" data-id="Vorticity"><a class="anchor hidden-xs" href="#Vorticity" title="Vorticity"><span class="octicon octicon-link"></span></a><span>Vorticity</span></h3><p><span>For the vorticity shader, we initially heavily struggled with finding a technical approach that would suit our smoke simulation. First, we thought of how we could implement vorticity using its definition from the Navier-Stokes equation as listed in the papers we researched (Visual Simulation of Smoke - Stanford). However, we soon realized that this approach would not work since we weren’t simulating based on particles, but instead relying on pixels. Therefore, we tried several different approaches such as randomization, guessing and checking, and creating simple rotations with the smoke. Eventually, we realized that the best vorticity that we could produce with our technical approach was through simple sine waves the smoke would take based on the vorticity constant which made the smoke simulation a little more realistic.</span> <br> <br>
 <img src="images/vorticity.gif" alt="Vorticity" width="600" height="300"></p>
 <h3 id="Temperature" data-id="Temperature"><a class="anchor hidden-xs" href="#Temperature" title="Temperature"><span class="octicon octicon-link"></span></a><span>Temperature</span></h3><p><span>Temperature was another variable that we had several false starts in the process of implementing. We ran into several dead ends, including attempts to implement it based on the Navier-Stokes equation and uncertainty over the visual effect we wanted the temperature to have. Ultimately we settled on having the smoke condense more heavily at low temperatures and fade more quickly at high temperatures, due to the basic principle of faster particle motion.</span><br>
-  <li><span>Temperature = 300 (default)</span></li>
-  <img src="images/t_300.png" alt="t_300" width="600" height="300">
-  <br> <br>
-  <li><span>Temperature = 50</span></li>
-  <img src="images/t_50.png" alt="t_50" width="600" height="300">
-  <br> <br>
-  <li><span>Temperature = 430</span></li>
-  <img src="images/t_430.png" alt="t_430" width="600" height="300"></p>
+  
+<br>
+  <img src="images/temp.gif" alt="temp" width="600" height="300"></p>
+<br></p>
 
 <h2 id="Video" data-id="Video"><a class="anchor hidden-xs" href="#Video" title="Video"><span class="octicon octicon-link"></span></a><span>Video</span></h2><p><span>Here is our demo video.</span><br>
 <iframe src="https://drive.google.com/file/d/1e_zQZ3zoauxamDVSZ3wqXWIZWe52vCNl/preview" width="640" height="480"></iframe>
